@@ -43,6 +43,13 @@ class LivewireStatusBoard extends Component
         $this->statusHeaderView = $statusHeaderView ?? 'livewire-status-board::status-header';
         $this->statusFooterView = $statusFooterView ?? 'livewire-status-board::status-footer';
         $this->recordView = $recordView ?? 'livewire-status-board::record';
+
+        $this->afterMount();
+    }
+
+    public function afterMount()
+    {
+        //
     }
 
     public function statuses() : Collection
