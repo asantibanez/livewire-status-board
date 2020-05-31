@@ -1,11 +1,11 @@
 <div class="w-full h-full flex space-x-4 overflow-x-auto">
 
     @foreach($statuses as $status)
-        <div class="min-w-full sm:min-w-0 bg-blue-200 rounded px-2">
+        <div class="min-w-full sm:min-w-0 bg-blue-200 rounded px-2 flex flex-col">
             <div class="p-2 text-sm text-gray-700">
                 {{ $status['title'] }}
             </div>
-            <div class="space-y-2 px-2"
+            <div class="space-y-2 p-2 flex-1 overflow-y-auto"
                  data-status-id="{{ $status['id'] }}"
                  data-status-title="{{ $status['title'] }}"
                  id="{{ $componentId }}-{{ $status['id'] }}">
