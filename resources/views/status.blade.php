@@ -3,7 +3,7 @@
 <div class="{{ $styles['statusWrapper'] }}">
     <div class="{{ $styles['status'] }}" id="{{ $status['id'] }}">
 
-        @include('livewire-status-board::status-header', [
+        @include($statusHeaderView, [
             'status' => $status
         ])
 
@@ -13,14 +13,14 @@
             class="{{ $styles['statusRecords'] }}">
 
             @foreach($status['records'] as $record)
-                @include('livewire-status-board::record', [
+                @include($recordView, [
                     'record' => $record,
                 ])
             @endforeach
 
         </div>
 
-        @include('livewire-status-board::status-footer', [
+        @include($statusFooterView, [
             'status' => $status
         ])
 

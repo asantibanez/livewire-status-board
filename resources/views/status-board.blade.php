@@ -1,7 +1,7 @@
 <div class="{{ $styles['wrapper'] }}">
 
     @foreach($statuses as $status)
-        @include('livewire-status-board::status', [
+        @include($statusView, [
             'status' => $status
         ])
     @endforeach

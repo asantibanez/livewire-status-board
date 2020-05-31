@@ -8,23 +8,41 @@ use Livewire\Component;
 /**
  * Class LivewireStatusBoard
  * @package Asantibanez\LivewireStatusBoard
+ * @property boolean $sortable
+ * @property boolean $sortableBetweenStatuses
  * @property string $statusBoardView
+ * @property string $statusView
+ * @property string $statusHeaderView
+ * @property string $statusFooterView
+ * @property string $recordView
  */
 class LivewireStatusBoard extends Component
 {
-    public $statusBoardView;
     public $sortable;
     public $sortableBetweenStatuses;
 
-    public function mount($statusBoardView = null,
-                          $sortable = false,
-                          $sortableBetweenStatuses = false)
+    public $statusBoardView;
+    public $statusView;
+    public $statusHeaderView;
+    public $statusFooterView;
+    public $recordView;
+
+    public function mount($sortable = false,
+                          $sortableBetweenStatuses = false,
+                          $statusBoardView = null,
+                          $statusView = null,
+                          $statusHeaderView = null,
+                          $statusFooterView = null,
+                          $recordView = null)
     {
-        $this->statusBoardView = $statusBoardView ?? 'livewire-status-board::status-board';
-
         $this->sortable = $sortable ?? false;
-
         $this->sortableBetweenStatuses = $sortableBetweenStatuses ?? false;
+
+        $this->statusBoardView = $statusBoardView ?? 'livewire-status-board::status-board';
+        $this->statusView = $statusView ?? 'livewire-status-board::status';
+        $this->statusHeaderView = $statusHeaderView ?? 'livewire-status-board::status-header';
+        $this->statusFooterView = $statusFooterView ?? 'livewire-status-board::status-footer';
+        $this->recordView = $recordView ?? 'livewire-status-board::record';
     }
 
     public function statuses() : Collection
