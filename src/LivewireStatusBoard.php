@@ -72,6 +72,8 @@ class LivewireStatusBoard extends Component
 
         $records = $this->records();
 
+        $styles = $this->styles();
+
         $statuses = $statuses
             ->map(function ($status) use ($records) {
                 $status['group'] = $this->id;
@@ -87,7 +89,7 @@ class LivewireStatusBoard extends Component
         return view($this->statusBoardView)
             ->with([
                 'statuses' => $statuses,
-                'styles' => $this->styles(),
+                'styles' => $styles,
             ]);
     }
 }
