@@ -15,6 +15,8 @@ use Livewire\Component;
  * @property string $statusHeaderView
  * @property string $statusFooterView
  * @property string $recordView
+ * @property string $beforeStatusBoardView
+ * @property string $afterStatusBoardView
  */
 class LivewireStatusBoard extends Component
 {
@@ -26,6 +28,8 @@ class LivewireStatusBoard extends Component
     public $statusHeaderView;
     public $statusFooterView;
     public $recordView;
+    public $beforeStatusBoardView;
+    public $afterStatusBoardView;
 
     public function mount($sortable = false,
                           $sortableBetweenStatuses = false,
@@ -33,7 +37,9 @@ class LivewireStatusBoard extends Component
                           $statusView = null,
                           $statusHeaderView = null,
                           $statusFooterView = null,
-                          $recordView = null)
+                          $recordView = null,
+                          $beforeStatusBoardView = null,
+                          $afterStatusBoardView = null)
     {
         $this->sortable = $sortable ?? false;
         $this->sortableBetweenStatuses = $sortableBetweenStatuses ?? false;
@@ -43,6 +49,8 @@ class LivewireStatusBoard extends Component
         $this->statusHeaderView = $statusHeaderView ?? 'livewire-status-board::status-header';
         $this->statusFooterView = $statusFooterView ?? 'livewire-status-board::status-footer';
         $this->recordView = $recordView ?? 'livewire-status-board::record';
+        $this->beforeStatusBoardView = $beforeStatusBoardView ?? null;
+        $this->afterStatusBoardView = $afterStatusBoardView ?? null;
 
         $this->afterMount();
     }

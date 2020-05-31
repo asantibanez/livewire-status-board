@@ -1,10 +1,19 @@
-<div class="{{ $styles['wrapper'] }}">
+<div>
+    <div>
+        @includeIf($beforeStatusBoardView)
+    </div>
 
-    @foreach($statuses as $status)
-        @include($statusView, [
-            'status' => $status
-        ])
-    @endforeach
+    <div class="{{ $styles['wrapper'] }}">
+        @foreach($statuses as $status)
+            @include($statusView, [
+                'status' => $status
+            ])
+        @endforeach
+    </div>
+
+    <div>
+        @includeIf($afterStatusBoardView)
+    </div>
 
     <div wire:ignore>
         @includeWhen($sortable, 'livewire-status-board::sortable', [
@@ -12,5 +21,4 @@
             'sortableBetweenStatuses' => $sortableBetweenStatuses,
         ])
     </div>
-
 </div>
