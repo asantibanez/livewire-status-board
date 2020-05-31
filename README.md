@@ -1,11 +1,6 @@
-# Very short description of the package
+# Livewire Status Board
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/asantibanez/livewire-status-board.svg?style=flat-square)](https://packagist.org/packages/asantibanez/livewire-status-board)
-[![Build Status](https://img.shields.io/travis/asantibanez/livewire-status-board/master.svg?style=flat-square)](https://travis-ci.org/asantibanez/livewire-status-board)
-[![Quality Score](https://img.shields.io/scrutinizer/g/asantibanez/livewire-status-board.svg?style=flat-square)](https://scrutinizer-ci.com/g/asantibanez/livewire-status-board)
-[![Total Downloads](https://img.shields.io/packagist/dt/asantibanez/livewire-status-board.svg?style=flat-square)](https://packagist.org/packages/asantibanez/livewire-status-board)
-
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+Livewire component to show records according to their current status
 
 ## Installation
 
