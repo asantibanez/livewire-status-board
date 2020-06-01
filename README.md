@@ -1,6 +1,10 @@
 # Livewire Status Board
 
-Livewire component to show records according to their current status
+Livewire component to show records/data according to their current status
+
+## Preview
+
+![preview](https://github.com/asantibanez/livewire-status-board/raw/master/preview.gif)
 
 ## Installation
 
@@ -10,10 +14,33 @@ You can install the package via composer:
 composer require asantibanez/livewire-status-board
 ```
 
+## Requirements
+
+This package uses `livewire/livewire` (https://laravel-livewire.com/) under the hood.
+
+It also uses TailwindCSS (https://tailwindcss.com/) for base styling. 
+
+Please make sure you include both of this dependencies before using this component. 
+
 ## Usage
 
+In order to use this component, you must create a new Livewire component that extends from 
+`LivewireStatusBoard`
+
+You can use `make:livewire` to create a new component. For example.
+``` bash
+php artisan make:livewire SalesOrdersStatusBoard
+```
+
+In the `SalesOrdersStatusBoard` class, instead of extending from the base Livewire `Component` class, 
+extend from `LivewireStatusBoard`. Also, remove the `render` method. 
+You'll have a class similar to this snippet.
+ 
 ``` php
-// Usage description here
+class SalesOrdersStatusBoard extends LivewireCalendar
+{
+    //
+}
 ```
 
 ### Testing
