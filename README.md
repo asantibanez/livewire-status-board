@@ -156,6 +156,55 @@ window.$ = require('jquery');
 window.Sortable = require('sortablejs').default;
 ``` 
 
+### Behavior and Interactions
+
+When sorting and dragging is enabled, your component can be notified when any of these events occur. The callbacks
+triggered by these two events are `onStatusSorted` and `onStatusChanged`
+
+On `onStatusSorted` you are notified about which `record` has changed position within it's `status`. You are also
+given a `$orderedIds` array which holds the ids of the `records` after being sorted. You must override the following
+method to get notified on this change.
+
+```php
+public function onStatusSorted($recordId, $statusId, $orderedIds)
+{
+    //   
+}
+```
+
+On `onStatusChanged` gets triggered when a `record` is moved to another `status`. In this scenario, you get notified
+about the `record` that was changed, the new `status`, the ordered ids from the previous status and the ordered ids
+of the new status the record in entering. To be notified about this event, you must override the following method:
+
+```php
+public function onStatusChanged($recordId, $statusId, $fromOrderedIds, $toOrderedIds)
+{
+    //
+}
+``` 
+
+`onStatusSorted` and `onStatusChanged` are never triggered simultaneously. You'll get notified of one or the other
+when an interaction occurs. 
+
+### Styling
+
+To modify the look and feel of the component, you can override the `styles` method and modify the base styles returned 
+by this method to the view. `styles()` returns a keyed array with Tailwind CSS classes used to render each one of the components.
+These base keys and styles are:
+
+```php
+    return [
+        'wrapper' => 'w-full h-full flex space-x-4 overflow-x-auto', // component wrapper
+        'statusWrapper' => 'h-full flex-1', // statuses wrapper
+        'status' => 'bg-blue-200 rounded px-2 flex flex-col h-full', // status column wrapper 
+        'statusHeader' => 'p-2 text-sm text-gray-700', // status header
+        'statusFooter' => '', // status footer
+        'statusRecords' => 'space-y-2 p-2 flex-1 overflow-y-auto', // status records wrapper 
+        'record' => 'shadow bg-white p-2 rounded border', // record
+        'ghost' => 'bg-indigo-200', // ghost class used when sorting/dragging. Must be only 1
+    ]; 
+```
+
 ### Testing
 
 ``` bash
