@@ -236,7 +236,7 @@ With these new styles, your component should look like the screenshot below
 
 Looks like Trello, right? 😅
 
-### Advanced Styling
+### Advanced Styling and Behavior
 
 Base views of the component can be customized as needed by exporting them to your project. To do this, run the
 `php artisan vendor:publish` command and export the `livewire-status-board-views` tag. The command will publish
@@ -254,6 +254,8 @@ Another approach is copying the base view files into your own view files and pas
     record-view="path/to/your/record-view"
 />
 ```
+
+Note: Using this approach also let's you add extra behavior to your component like click events on your record items 💪
 
 ### Adding Extra Views
 
