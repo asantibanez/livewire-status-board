@@ -193,16 +193,16 @@ by this method to the view. `styles()` returns a keyed array with Tailwind CSS c
 These base keys and styles are:
 
 ```php
-    return [
-        'wrapper' => 'w-full h-full flex space-x-4 overflow-x-auto', // component wrapper
-        'statusWrapper' => 'h-full flex-1', // statuses wrapper
-        'status' => 'bg-blue-200 rounded px-2 flex flex-col h-full', // status column wrapper 
-        'statusHeader' => 'p-2 text-sm text-gray-700', // status header
-        'statusFooter' => '', // status footer
-        'statusRecords' => 'space-y-2 p-2 flex-1 overflow-y-auto', // status records wrapper 
-        'record' => 'shadow bg-white p-2 rounded border', // record
-        'ghost' => 'bg-indigo-200', // ghost class used when sorting/dragging. Must be only 1
-    ]; 
+return [
+    'wrapper' => 'w-full h-full flex space-x-4 overflow-x-auto', // component wrapper
+    'statusWrapper' => 'h-full flex-1', // statuses wrapper
+    'status' => 'bg-blue-200 rounded px-2 flex flex-col h-full', // status column wrapper 
+    'statusHeader' => 'p-2 text-sm text-gray-700', // status header
+    'statusFooter' => '', // status footer
+    'statusRecords' => 'space-y-2 p-2 flex-1 overflow-y-auto', // status records wrapper 
+    'record' => 'shadow bg-white p-2 rounded border', // record
+    'ghost' => 'bg-indigo-200', // ghost class used when sorting/dragging. Must be only 1
+]; 
 ```
 
 ### Testing
