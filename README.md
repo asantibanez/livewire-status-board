@@ -2,11 +2,11 @@
 
 Livewire component to show records/data according to their current status
 
-## Preview
+### Preview
 
 ![preview](https://github.com/asantibanez/livewire-status-board/raw/master/preview.gif)
 
-## Installation
+### Installation
 
 You can install the package via composer:
 
@@ -14,7 +14,7 @@ You can install the package via composer:
 composer require asantibanez/livewire-status-board
 ```
 
-## Requirements
+### Requirements
 
 This package uses `livewire/livewire` (https://laravel-livewire.com/) under the hood.
 
@@ -22,7 +22,7 @@ It also uses TailwindCSS (https://tailwindcss.com/) for base styling.
 
 Please make sure you include both of this dependencies before using this component. 
 
-## Usage
+### Usage
 
 In order to use this component, you must create a new Livewire component that extends from 
 `LivewireStatusBoard`
@@ -124,6 +124,37 @@ To render the component in a view, just use the Livewire tag or include syntax
 Populate the Sales Order model and you should have something similar to the following screenshot
 
 ![basic](https://github.com/asantibanez/livewire-status-board/raw/master/basic.jpg)
+
+You can render any render and statuses of your project using this approach 👍
+
+### Sorting and Dragging
+
+By default, sorting and dragging between statuses is disabled. To enable it, you must include the following
+props when using the view: `sortable` and `sortable-between-statuses` 
+
+```blade
+<livewire:sales-orders-status-board 
+    :sortable="true"
+    :sortable-between-statuses="true"
+/>
+```
+
+`sortable` enables sorting withing each status and `sortable-between-statuses` allow drag and drop from one status 
+to the other. Adding these two properties, allow you to have drag and drop in place.
+
+You must also install the following JS dependencies in your project to enable sorting and dragging.
+```bash
+npm install jquery
+npm install sortablejs
+```
+
+Once installed, make them available globally in the window object. This can be done in the `bootstrap.js` file that 
+ships with your Laravel app.
+
+```javascript
+window.$ = require('jquery');
+window.Sortable = require('sortablejs').default;
+``` 
 
 ### Testing
 
