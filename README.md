@@ -43,6 +43,88 @@ class SalesOrdersStatusBoard extends LivewireCalendar
 }
 ```
 
+In this class, you must override the following methods to display data
+```php
+public function statuses() : Collection 
+{
+    //
+}
+
+public function records() : Collection 
+{
+    //
+}
+```
+
+As you may have noticed, both methods return a collection. `statuses()` refers to all the different status values
+your data may have in different points of time. `records()` on the other hand, stand for the data you want to show
+that could be in any of those previously defined `statuses()` collection.
+
+To show how these two methods work together, let's discuss an example of Sales Orders and their different status
+along the sales process: Registered, Awaiting Confirmation, Confirmed, Delivered. Each Sales Order might be in a different
+status at specific times. For this example, we might define the following collection for `statuses()`
+
+```php
+public function statuses() : Collection
+{
+    return collect([
+        [
+            'id' => 'registered',
+            'title' => 'Registered',
+        ],
+        [
+            'id' => 'awaiting_confirmation',
+            'title' => 'Awaiting Confirmation',
+        ],
+        [
+            'id' => 'confirmed',
+            'title' => 'Confirmed',
+        ],
+        [
+            'id' => 'delivered',
+            'title' => 'Delivered',
+        ],
+    ]);
+}
+```
+
+For each `status` we define, we must return an array with at least 2 keys: `id` and `title`.
+
+Now, for `records()` we may define a list of Sales Orders that come from an Eloquent model in our project
+
+```php
+public function records() : Collection
+{
+    return SalesOrder::query()
+        ->map(function (SalesOrder $salesOrder) {
+            return [
+                'id' => $salesOrder->id,
+                'title' => $salesOrder->client,
+                'status' => $salesOrder->status,
+            ];
+        });
+}
+```
+
+As you might see in the above snippet, we must return a collection of array items where each item must have at least
+3 keys: `id`, `title` and `status`. The last one is of most importance since it is going to be used to match to which
+`status` the `record` belongs to. For this matter, the component matches `status` and `records` with the following 
+comparison
+
+```php
+$status['id'] === $record['status'];
+``` 
+
+To render the component in a view, just use the Livewire tag or include syntax
+
+```blade
+<livewire:sales-orders-status-board />
+```  
+
+Populate the Sales Order model and you should have something similar to the following screenshot
+
+![basic](https://github.com/asantibanez/livewire-status-board/raw/master/basic.jpg)
+
 ### Testing
 
 ``` bash
