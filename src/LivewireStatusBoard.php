@@ -75,14 +75,14 @@ class LivewireStatusBoard extends Component
         return $record['status'] == $status['id'];
     }
 
-    public function onStatusSorted($dataId, $statusId, $orderedIds)
+    public function onStatusSorted($recordId, $statusId, $orderedIds)
     {
-        dd($dataId, $statusId, $orderedIds);
+        //
     }
 
-    public function onStatusChanged($dataId, $statusId, $fromOrderedIds, $toOrderedIds)
+    public function onStatusChanged($recordId, $statusId, $fromOrderedIds, $toOrderedIds)
     {
-        dd($dataId, $statusId, $fromOrderedIds, $toOrderedIds);
+        //
     }
 
     public function styles()

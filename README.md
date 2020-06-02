@@ -205,6 +205,76 @@ return [
 ]; 
 ```
 
+An example of overriding the `styles()` method can be seen below
+
+```php
+public function styles()
+{
+    $baseStyles = parent::styles();
+
+    $baseStyles['wrapper'] = 'w-full flex space-x-4 overflow-x-auto bg-blue-500 px-4 py-8';
+
+    $baseStyles['statusWrapper'] = 'flex-1';
+
+    $baseStyles['status'] = 'bg-gray-200 rounded px-2 flex flex-col flex-1';
+
+    $baseStyles['record'] = 'shadow bg-white p-2 rounded border text-sm text-gray-800';
+
+    $baseStyles['statusRecords'] = 'space-y-2 px-1 pt-2 pb-2';
+
+    $baseStyles['statusHeader'] = 'text-sm font-medium py-2 text-gray-700';
+
+    $baseStyles['ghost'] = 'bg-gray-400';
+
+    return $baseStyles;
+}
+```
+
+With these new styles, your component should look like the screenshot below
+
+![basic](https://github.com/asantibanez/livewire-status-board/raw/master/styles.jpg)
+
+Looks like Trello, right? 😅
+
+### Advanced Styling
+
+Base views of the component can be customized as needed by exporting them to your project. To do this, run the
+`php artisan vendor:publish` command and export the `livewire-status-board-views` tag. The command will publish
+the base views under `/resources/views/vendor/livewire-status-board`. You can modify these base components as
+needed keeping in mind to maintain the `data` attributes and `ids` along the way.
+
+Another approach is copying the base view files into your own view files and pass them directly to your component
+
+```blade
+<livewire:sales-orders-status-board 
+    status-board-view="path/to/your/status-board-view"
+    status-view="path/to/your/status-view"
+    status-header-view="path/to/your/status-header-view"
+    status-footer-view="path/to/your/status-footer-view"
+    record-view="path/to/your/record-view"
+/>
+```
+
+### Adding Extra Views
+
+The component let's you add a view before and/or after the status board has been rendered. These two placeholders can
+be used to add extra functionality to your component like a search input or toolbar of actions. To use them, just pass
+along the views you want to use in the `before-status-board-view` and `after-status-board-view` props when displaying 
+the component.
+
+```blade
+<livewire:sales-orders-status-board 
+    before-status-board-view="path/to/your/before-status-board-view"
+    after-status-board-view="path/to/your/after-status-board-view"  
+/>
+```
+
+Note: These views are optional.
+
+In the following example, a `before-status-board-view` has been specified to add a search text box and a button
+
+![extra-views](https://github.com/asantibanez/livewire-status-board/raw/master/extra-views.jpg)
+
 ### Testing
 
 ``` bash
@@ -231,7 +301,3 @@ If you discover any security related issues, please email santibanez.andres@gmai
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
