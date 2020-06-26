@@ -37,7 +37,7 @@ extend from `LivewireStatusBoard`. Also, remove the `render` method.
 You'll have a class similar to this snippet.
  
 ``` php
-class SalesOrdersStatusBoard extends LivewireCalendar
+class SalesOrdersStatusBoard extends LivewireStatusBoard
 {
     //
 }
