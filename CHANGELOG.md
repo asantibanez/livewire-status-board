@@ -1,7 +1,14 @@
 # Changelog
 
-All notable changes to `livewire-status-board` will be documented in this file
+## 2.0.0 - 2020-10-14
 
-## 1.0.0 - 201X-XX-XX
+- Added Laravel 8 support
+- Added Livewire v2 support
+- Extracted $ghostClass as parameter for sortable options
+- Added $recordContentView for better customization
+- Added $recordClickEnabled flag to enable click events on rendered records
+- Removed jQuery dependency
 
-- initial release
+## 1.0.0 - 2020-06-02
+
+- Initial Release
