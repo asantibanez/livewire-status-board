@@ -63,7 +63,7 @@ class SampleLivewireStatusBoardTest extends TestCase
         $this->assertFalse($component->viewData('statusSortedCalled'));
 
         //Act
-        $component->runAction('onStatusSorted');
+        $component->runAction('onStatusSorted', null, null, null);
 
         //Assert
         $this->assertTrue($component->viewData('statusSortedCalled'));
@@ -78,7 +78,7 @@ class SampleLivewireStatusBoardTest extends TestCase
         $this->assertFalse($component->viewData('statusChangedCalled'));
 
         //Act
-        $component->runAction('onStatusChanged');
+        $component->runAction('onStatusChanged', null, null, null, null);
 
         //Assert
         $this->assertTrue($component->viewData('statusChangedCalled'));
