@@ -15,8 +15,12 @@ use Livewire\Component;
  * @property string $statusHeaderView
  * @property string $statusFooterView
  * @property string $recordView
+ * @property string $recordContentView
+ * @property string $sortableView
  * @property string $beforeStatusBoardView
  * @property string $afterStatusBoardView
+ * @property string $ghostClass
+ * @property boolean $recordClickEnabled
  */
 class LivewireStatusBoard extends Component
 {
@@ -28,8 +32,14 @@ class LivewireStatusBoard extends Component
     public $statusHeaderView;
     public $statusFooterView;
     public $recordView;
+    public $recordContentView;
+    public $sortableView;
     public $beforeStatusBoardView;
     public $afterStatusBoardView;
+
+    public $ghostClass;
+
+    public $recordClickEnabled;
 
     public function mount($sortable = false,
                           $sortableBetweenStatuses = false,
@@ -38,8 +48,13 @@ class LivewireStatusBoard extends Component
                           $statusHeaderView = null,
                           $statusFooterView = null,
                           $recordView = null,
+                          $recordContentView = null,
+                          $sortableView = null,
                           $beforeStatusBoardView = null,
-                          $afterStatusBoardView = null)
+                          $afterStatusBoardView = null,
+                          $ghostClass = null,
+                          $recordClickEnabled = false,
+                          $extras = [])
     {
         $this->sortable = $sortable ?? false;
         $this->sortableBetweenStatuses = $sortableBetweenStatuses ?? false;
@@ -49,13 +64,19 @@ class LivewireStatusBoard extends Component
         $this->statusHeaderView = $statusHeaderView ?? 'livewire-status-board::status-header';
         $this->statusFooterView = $statusFooterView ?? 'livewire-status-board::status-footer';
         $this->recordView = $recordView ?? 'livewire-status-board::record';
+        $this->recordContentView = $recordContentView ?? 'livewire-status-board::record-content';
+        $this->sortableView = $sortableView ?? 'livewire-status-board::sortable';
         $this->beforeStatusBoardView = $beforeStatusBoardView ?? null;
         $this->afterStatusBoardView = $afterStatusBoardView ?? null;
 
-        $this->afterMount();
+        $this->ghostClass = $ghostClass ?? 'bg-indigo-100';
+
+        $this->recordClickEnabled = $recordClickEnabled ?? false;
+
+        $this->afterMount($extras);
     }
 
-    public function afterMount()
+    public function afterMount($extras = [])
     {
         //
     }
@@ -85,6 +106,11 @@ class LivewireStatusBoard extends Component
         //
     }
 
+    public function onRecordClick($recordId)
+    {
+        //
+    }
+
     public function styles()
     {
         return [
@@ -95,7 +121,7 @@ class LivewireStatusBoard extends Component
             'statusFooter' => '',
             'statusRecords' => 'space-y-2 p-2 flex-1 overflow-y-auto',
             'record' => 'shadow bg-white p-2 rounded border',
-            'ghost' => 'bg-indigo-200',
+            'recordContent' => 'w-full',
         ];
     }
 
@@ -121,6 +147,7 @@ class LivewireStatusBoard extends Component
 
         return view($this->statusBoardView)
             ->with([
+                'records' => $records,
                 'statuses' => $statuses,
                 'styles' => $styles,
             ]);
