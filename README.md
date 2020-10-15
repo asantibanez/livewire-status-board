@@ -112,7 +112,7 @@ As you might see in the above snippet, we must return a collection of array item
 comparison
 
 ```php
-$status['id'] === $record['status'];
+$status['id'] == $record['status'];
 ``` 
 
 To render the component in a view, just use the Livewire tag or include syntax
@@ -144,7 +144,6 @@ to the other. Adding these two properties, allow you to have drag and drop in pl
 
 You must also install the following JS dependencies in your project to enable sorting and dragging.
 ```bash
-npm install jquery
 npm install sortablejs
 ```
 
@@ -152,7 +151,6 @@ Once installed, make them available globally in the window object. This can be d
 ships with your Laravel app.
 
 ```javascript
-window.$ = require('jquery');
 window.Sortable = require('sortablejs').default;
 ``` 
 
@@ -186,6 +184,24 @@ public function onStatusChanged($recordId, $statusId, $fromOrderedIds, $toOrdere
 `onStatusSorted` and `onStatusChanged` are never triggered simultaneously. You'll get notified of one or the other
 when an interaction occurs. 
 
+You can also get notified when a record in the status board is clicked via the `onRecordClick` event
+
+```php
+public function onRecordClick($recordId)
+{
+    //
+}
+``` 
+
+To enable `onRecordClick` you must specify this behavior when rendering the component through the 
+`record-click-enabled` parameter
+
+```blade
+<livewire:sales-orders-status-board 
+    :record-click-enabled="true"
+/>
+```
+
 ### Styling
 
 To modify the look and feel of the component, you can override the `styles` method and modify the base styles returned 
@@ -200,8 +216,8 @@ return [
     'statusHeader' => 'p-2 text-sm text-gray-700', // status header
     'statusFooter' => '', // status footer
     'statusRecords' => 'space-y-2 p-2 flex-1 overflow-y-auto', // status records wrapper 
-    'record' => 'shadow bg-white p-2 rounded border', // record
-    'ghost' => 'bg-indigo-200', // ghost class used when sorting/dragging. Must be only 1
+    'record' => 'shadow bg-white p-2 rounded border', // record wrapper
+    'recordContent' => '', // record content
 ]; 
 ```
 
@@ -218,13 +234,11 @@ public function styles()
 
     $baseStyles['status'] = 'bg-gray-200 rounded px-2 flex flex-col flex-1';
 
-    $baseStyles['record'] = 'shadow bg-white p-2 rounded border text-sm text-gray-800';
+    $baseStyles['statusHeader'] = 'text-sm font-medium py-2 text-gray-700';
 
     $baseStyles['statusRecords'] = 'space-y-2 px-1 pt-2 pb-2';
 
-    $baseStyles['statusHeader'] = 'text-sm font-medium py-2 text-gray-700';
-
-    $baseStyles['ghost'] = 'bg-gray-400';
+    $baseStyles['record'] = 'shadow bg-white p-2 rounded border text-sm text-gray-800';
 
     return $baseStyles;
 }
@@ -252,10 +266,12 @@ Another approach is copying the base view files into your own view files and pas
     status-header-view="path/to/your/status-header-view"
     status-footer-view="path/to/your/status-footer-view"
     record-view="path/to/your/record-view"
+    record-content-view="path/to/your/record-content-view"
 />
 ```
 
-Note: Using this approach also let's you add extra behavior to your component like click events on your record items 💪
+Note: Using this approach also let's you add extra behavior to your component like click events on header, footers,
+such as filters or any other actions
 
 ### Adding Extra Views
 
