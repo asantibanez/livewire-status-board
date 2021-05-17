@@ -20,7 +20,7 @@ This package uses `livewire/livewire` (https://laravel-livewire.com/) under the 
 
 It also uses TailwindCSS (https://tailwindcss.com/) for base styling. 
 
-Please make sure you include both of this dependencies before using this component. 
+Please make sure you include both of these dependencies before using this component. 
 
 ### Usage
 
@@ -107,7 +107,7 @@ public function records() : Collection
 ```
 
 As you might see in the above snippet, we must return a collection of array items where each item must have at least
-3 keys: `id`, `title` and `status`. The last one is of most importance since it is going to be used to match to which
+3 keys: `id`, `title` and `status`. The last one is the most importance since it is going to be used to match to which
 `status` the `record` belongs to. For this matter, the component matches `status` and `records` with the following 
 comparison
 
@@ -120,6 +120,10 @@ To render the component in a view, just use the Livewire tag or include syntax
 ```blade
 <livewire:sales-orders-status-board />
 ```  
+or 
+```blade
+@include('sales-orders-status-board')
+```
 
 Populate the Sales Order model and you should have something similar to the following screenshot
 
@@ -139,7 +143,7 @@ props when using the view: `sortable` and `sortable-between-statuses`
 />
 ```
 
-`sortable` enables sorting withing each status and `sortable-between-statuses` allow drag and drop from one status 
+`sortable` enables sorting within each status and `sortable-between-statuses` allow drag and drop from one status 
 to the other. Adding these two properties, allow you to have drag and drop in place.
 
 You must also install the following JS dependencies in your project to enable sorting and dragging.
