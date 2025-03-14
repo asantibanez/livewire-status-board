@@ -135,8 +135,8 @@ class LivewireStatusBoard extends Component
 
         $statuses = $statuses
             ->map(function ($status) use ($records) {
-                $status['group'] = $this->id;
-                $status['statusRecordsId'] = "{$this->id}-{$status['id']}";
+                $status['group'] = $this->getId();
+                $status['statusRecordsId'] = "{$this->getId()}-{$status['id']}";
                 $status['records'] = $records
                     ->filter(function ($record) use ($status) {
                         return $this->isRecordInStatus($record, $status);
