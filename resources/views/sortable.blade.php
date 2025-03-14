@@ -1,6 +1,7 @@
-<script>
-    window.addEventListener('load', function () {
-        @foreach($statuses as $status)
+<div wire:ignore>
+    <script>
+        window.addEventListener('load', function () {
+            @foreach($statuses as $status)
             Sortable.create(document.getElementById('{{ $status['statusRecordsId'] }}'), {
                 group: '{{ $sortableBetweenStatuses ? $status['group'] : $status['id'] }}',
                 animation: 0,
@@ -34,6 +35,7 @@
                     @this.call('onStatusChanged', recordId, toStatusId, fromOrderedIds, toOrderedIds);
                 },
             });
-        @endforeach
-    });
-</script>
+            @endforeach
+        });
+    </script>
+</div>
