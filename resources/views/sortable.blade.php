@@ -1,5 +1,5 @@
 <script>
-    window.onload = () => {
+    window.addEventListener('load', function () {
         @foreach($statuses as $status)
             Sortable.create(document.getElementById('{{ $status['statusRecordsId'] }}'), {
                 group: '{{ $sortableBetweenStatuses ? $status['group'] : $status['id'] }}',
@@ -35,5 +35,5 @@
                 },
             });
         @endforeach
-    }
+    });
 </script>
