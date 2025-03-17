@@ -1,8 +1,12 @@
 <div wire:ignore>
+    @script
     <script>
         window.addEventListener('load', function () {
             @foreach($statuses as $status)
-            Sortable.create(document.getElementById('{{ $status['statusRecordsId'] }}'), {
+
+            const {{$status['id']}}Element = document.getElementById('{{ $status['statusRecordsId'] }}');
+
+            Sortable.create({{$status['id']}}Element, {
                 group: '{{ $sortableBetweenStatuses ? $status['group'] : $status['id'] }}',
                 animation: 0,
                 ghostClass: '{{ $ghostClass }}',
@@ -25,17 +29,19 @@
                     const fromOrderedIds = [].slice.call(evt.from.children).map(child => child.id);
 
                     if (sameContainer) {
-                        @this.call('onStatusSorted', recordId, fromStatusId, fromOrderedIds);
+                        $wire.call('onStatusSorted', recordId, fromStatusId, fromOrderedIds);
                         return;
                     }
 
                     const toStatusId = evt.to.dataset.statusId;
                     const toOrderedIds = [].slice.call(evt.to.children).map(child => child.id);
 
-                    @this.call('onStatusChanged', recordId, toStatusId, fromOrderedIds, toOrderedIds);
+                    $wire.call('onStatusChanged', recordId, toStatusId, fromOrderedIds, toOrderedIds);
                 },
             });
+
             @endforeach
         });
     </script>
+    @endscript
 </div>
